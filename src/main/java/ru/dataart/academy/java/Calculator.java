@@ -12,13 +12,28 @@ public class Calculator {
         StringBuilder stringBuilderOfFirstNumber = new StringBuilder();
         StringBuilder stringBuilderOfSecondNumber = new StringBuilder();
 
-        for (int i = firstNumber.size()-1; i >= 0; i--) {
-            stringBuilderOfFirstNumber.append(firstNumber.get(i));
+        if (firstNumber.size() > 0) {
+            ListIterator<Integer> firstListIterator = firstNumber.listIterator(firstNumber.size());
+            while (firstListIterator.hasPrevious()) {
+                stringBuilderOfFirstNumber.append(firstListIterator.previous());
+            }
+        } else stringBuilderOfFirstNumber.append(0);
+
+        if (secondNumber.size() > 0) {
+            ListIterator<Integer> secondListIterator = secondNumber.listIterator(secondNumber.size());
+            while (secondListIterator.hasPrevious()) {
+                stringBuilderOfSecondNumber.append(secondListIterator.previous());
+            }
+        } else stringBuilderOfSecondNumber.append(0);
+
+        try {
+            int firstN = Integer.parseInt(stringBuilderOfFirstNumber.toString());
+            int secondN = Integer.parseInt(stringBuilderOfSecondNumber.toString());
+            return firstN + secondN;
+        } catch (NumberFormatException e) {
+            System.out.println("Out of Integer range");;
         }
-        for (int i = secondNumber.size()-1; i >= 0; i--) {
-            stringBuilderOfSecondNumber.append(secondNumber.get(i));
-        }
-        return Integer.parseInt(stringBuilderOfFirstNumber.toString()) + Integer.parseInt(stringBuilderOfSecondNumber.toString());
+        return 0;
     }
 
     /**
